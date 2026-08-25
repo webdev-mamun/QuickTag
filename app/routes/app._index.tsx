@@ -452,9 +452,8 @@ export default function Settings() {
             the part they can act on while they are still choosing it.
           */}
           <s-paragraph color="subdued">
-            QuickTag removes these tags when you unarchive. Don&apos;t reuse a
-            tag you need for something else — if a product already carries one,
-            unarchiving takes it off that product too.
+            Don&apos;t reuse an archive tag for anything else — unarchiving
+            removes it, even from products that already had it.
           </s-paragraph>
 
           {saveError ? (

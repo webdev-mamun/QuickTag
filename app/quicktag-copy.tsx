@@ -174,9 +174,8 @@ export function WhatArchivingDoes({
         drops out of those. Unarchiving puts your original tags back.
       </s-paragraph>
       <s-paragraph>
-        Your archive tags belong to QuickTag. If a product already carries one,
-        unarchiving removes it — so don&apos;t use a tag you also need for
-        something else.
+        Archive tags belong to QuickTag: unarchiving strips them even from
+        products that already had one, so don&apos;t reuse them elsewhere.
       </s-paragraph>
       {children}
     </s-section>
