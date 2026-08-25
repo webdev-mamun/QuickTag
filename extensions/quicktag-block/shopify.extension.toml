@@ -1,0 +1,35 @@
+# QuickTag block extension — configuration.
+#
+# WHERE THIS RUNS: nowhere by itself. The CLI uploads this manifest plus the
+# compiled JS bundle to Shopify. Shopify serves and executes the bundle on ITS
+# OWN infrastructure — a sandboxed worker inside the admin page. Your local
+# Node server is not in the request path.
+#
+# WHY A BLOCK AS WELL AS THE ACTION: it archives and unarchives in place, with
+# no dialog. The card states what pressing the button will do, the press replaces
+# the card body with a spinner, and what comes back is the card describing the
+# other state — that change IS the confirmation. It also polls every 10s, so an
+# edit made elsewhere on the page shows up without a reload.
+#
+# WHAT THIS COMMENT USED TO CLAIM, and don't put back: that the card displays the
+# product's tag list and repaints from a `tagsAdd` payload, and that the action
+# extension's `shopify.close()` refreshes the page. None of it is true now. The
+# card names no tags at all (it shows counts — see src/BlockExtension.tsx), it
+# calls no mutation directly (everything goes through /api/quicktag), and nothing
+# either extension can do makes Shopify's own Tags card repaint before a reload.
+#
+# Blocks are opt-in: the merchant has to pin this card to the product page once
+# in the admin before it appears.
+api_version = "2026-07"
+
+[[extensions]]
+# Merchant-facing name lives in locales/en.default.json.
+name = "t:name"
+handle = "quicktag-block"
+uid = "6438be15-28fb-38af-a051-d02aeb0cab657e0b2af1"
+type = "ui_extension"
+
+# Only 1 target can be specified for each Admin block extension.
+[[extensions.targeting]]
+module = "./src/BlockExtension.tsx"
+target = "admin.product-details.block.render"

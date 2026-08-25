@@ -1,0 +1,665 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2868
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Arial-BoldMT;\f1\fswiss\fcharset0 ArialMT;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red234\green234\blue234;\red135\green135\blue135;
+}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;\cssrgb\c93333\c93333\c93333;\cssrgb\c60000\c60000\c60000;
+}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid101\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid2}
+{\list\listtemplateid3\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid201\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid3}
+{\list\listtemplateid4\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid301\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid4}
+{\list\listtemplateid5\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid401\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid5}
+{\list\listtemplateid6\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid501\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid6}
+{\list\listtemplateid7\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid601\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid7}
+{\list\listtemplateid8\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid701\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid8}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}{\listoverride\listid3\listoverridecount0\ls3}{\listoverride\listid4\listoverridecount0\ls4}{\listoverride\listid5\listoverridecount0\ls5}{\listoverride\listid6\listoverridecount0\ls6}{\listoverride\listid7\listoverridecount0\ls7}{\listoverride\listid8\listoverridecount0\ls8}}
+\deftab720
+\pard\pardeftab720\sa357\partightenfactor0
+
+\f0\b\fs53\fsmilli26667 \cf0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 QuickTag \'97 Technical Overview\
+\pard\pardeftab720\sa293\partightenfactor0
+
+\f1\b0\fs29\fsmilli14667 \cf0 Shopify app. Archives a product's tags and restores them. 3\'964 minute read.\
+\pard\pardeftab720\sa309\partightenfactor0
+
+\f0\b\fs37\fsmilli18667 \cf0 1. What it does\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sa80\partightenfactor0
+\ls1\ilvl0
+\fs29\fsmilli14667 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Archive
+\f1\b0  \'97 saves a product's tags to a backup, removes them from the product, applies marker tags instead.\
+\ls1\ilvl0
+\f0\b \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Restore
+\f1\b0  \'97 puts the saved tags back, removes the marker tags, deletes the backup.\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sa80\partightenfactor0
+\ls1\ilvl0\cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 The product stays published. Only tags change. Effect: it drops out of automated collections and tag filters, reversibly.\
+\pard\pardeftab720\sa309\partightenfactor0
+
+\f0\b\fs37\fsmilli18667 \cf0 2. The three parts\
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart213 \tamarb213 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clcbpat3 \clwWidth4319\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx2880
+\clvertalt \clcbpat3 \clwWidth5463\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx5760
+\clvertalt \clcbpat3 \clwWidth4697\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\fs28 \cf0 Part\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Runs where\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Location\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart213 \tamarb213 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth4319\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth5463\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth4697\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f1\b0 \cf0 Embedded app\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Node server + admin iframe\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 app/routes/\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart213 \tamarb213 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth4319\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth5463\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth4697\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Action extension (popup)\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Shopify's sandbox, in the admin\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 extensions/quicktag-action/\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart213 \tamarb213 \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth4319\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth5463\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth4697\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Block extension (card)\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Shopify's sandbox, in the admin\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 extensions/quicktag-block/\cell \lastrow\row
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sa80\partightenfactor0
+\ls2\ilvl0
+\f0\b\fs29\fsmilli14667 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Neither extension decides anything.
+\f1\b0  Both POST to `/api/quicktag`; all logic is server-side, so the two entry points cannot diverge.\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sa80\partightenfactor0
+\ls2\ilvl0\cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Action extension = the modal, reached from 
+\f0\b More actions
+\f1\b0 . Available on install.\
+\ls2\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Block extension = read-only status card. Must be pinned by the merchant. Polls every 10s. Its buttons open the action extension.\
+\pard\pardeftab720\sa309\partightenfactor0
+
+\f0\b\fs37\fsmilli18667 \cf0 3. How archive and restore work\
+\pard\pardeftab720\sa293\partightenfactor0
+
+\f1\b0\fs29\fsmilli14667 \cf0 Both sequences live in 
+\f0\b app/quicktag-archive.server.ts
+\f1\b0 .\
+\pard\pardeftab720\sa106\partightenfactor0
+
+\f0\b\fs30\fsmilli15333 \cf0 archiveProduct()\
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart213 \tamarb213 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clcbpat3 \clwWidth509\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx2880
+\clvertalt \clcbpat3 \clwWidth8322\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx5760
+\clvertalt \clcbpat3 \clwWidth5649\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\fs28 \cf0 #\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Step\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Function\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart213 \tamarb213 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth509\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth8322\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth5649\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f1\b0 \cf0 1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Validate requested tags\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 validateTags\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart213 \tamarb213 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth509\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth8322\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth5649\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 2\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Read live tags + status\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 readProductTagState\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart213 \tamarb213 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth509\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth8322\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth5649\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 3\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Refuse if already archived\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 archiveProduct\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart213 \tamarb213 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth509\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth8322\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth5649\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 4\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Snapshot = live tags minus marker tags\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 tagsNotIn\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart213 \tamarb213 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth509\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth8322\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth5649\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 5\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Write backup, confirm it round-tripped\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 writeBackup\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart213 \tamarb213 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth509\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth8322\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth5649\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 6\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Add marker tags\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 mutateTags (tagsAdd)\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart213 \tamarb213 \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth509\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth8322\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth5649\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 7\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Remove saved tags\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 mutateTags (tagsRemove)\cell \lastrow\row
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sa80\partightenfactor0
+\ls3\ilvl0
+\fs29\fsmilli14667 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Marker tags go on 
+\f0\b before
+\f1\b0  saved tags come off \'97 the product is never both untagged and unmarked.\
+\pard\pardeftab720\sa106\partightenfactor0
+
+\f0\b\fs30\fsmilli15333 \cf0 restoreProduct()\
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart213 \tamarb213 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clcbpat3 \clwWidth405\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx2880
+\clvertalt \clcbpat3 \clwWidth9120\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx5760
+\clvertalt \clcbpat3 \clwWidth4955\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\fs28 \cf0 #\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Step\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Function\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart213 \tamarb213 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth405\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth9120\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth4955\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f1\b0 \cf0 1\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Read live tags + backup\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 readProductTagState\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart213 \tamarb213 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth405\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth9120\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth4955\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 2\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Refuse if not archived\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 restoreProduct\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart213 \tamarb213 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth405\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth9120\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth4955\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 3\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Add saved tags back\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 mutateTags (tagsAdd)\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart213 \tamarb213 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth405\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth9120\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth4955\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 4\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Remove marker tags (or all others, per checkbox)\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 mutateTags (tagsRemove)\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart213 \tamarb213 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth405\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth9120\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth4955\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 5\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Fresh re-read, verify every saved tag is present\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 readProductTagState\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart213 \tamarb213 \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth405\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth9120\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth4955\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 6\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Delete backup\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 deleteBackup\cell \lastrow\row
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sa80\partightenfactor0
+\ls4\ilvl0
+\fs29\fsmilli14667 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Step 5 gates step 6, which is an irreversible delete of the only copy. A failed restore keeps the backup \'97 retry is always safe.\
+\pard\pardeftab720\sa309\partightenfactor0
+
+\f0\b\fs37\fsmilli18667 \cf0 4. File map\
+\pard\pardeftab720\sa293\partightenfactor0
+
+\f1\b0\fs29\fsmilli14667 \cf0 48 functions, 13 files. Entry points in bold.\
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart213 \tamarb213 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clcbpat3 \clwWidth3829\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx2880
+\clvertalt \clcbpat3 \clwWidth3279\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx5760
+\clvertalt \clcbpat3 \clwWidth7372\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f0\b\fs28 \cf0 File\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Holds\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Key functions\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart213 \tamarb213 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth3829\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth3279\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth7372\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f1\b0 \cf0 app/quicktag-archive.server.ts\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Archive + restore core (14 fns)\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f0\b \cf0 archiveProduct
+\f1\b0 , 
+\f0\b restoreProduct
+\f1\b0 , readProductTagState, writeBackup, deleteBackup, mutateTags\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart213 \tamarb213 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth3829\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth3279\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth7372\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 app/quicktag.server.ts\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Shop config + tag validation (6)\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 readQuickTagConfig, writeManagedTags, validateTags, seedQuickTagConfig\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart213 \tamarb213 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth3829\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth3279\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth7372\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 app/quicktag-managed.server.ts\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Archived-products list (5)\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f0\b \cf0 listManagedProducts
+\f1\b0 , createBackupDefinition\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart213 \tamarb213 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth3829\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth3279\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth7372\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 app/routes/api.quicktag.tsx\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 The shared endpoint both extensions call (4)\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f0\b \cf0 loader
+\f1\b0  (read), 
+\f0\b action
+\f1\b0  (archive/restore)\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart213 \tamarb213 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth3829\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth3279\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth7372\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 app/routes/app._index.tsx\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Settings screen (4)\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Settings, loader, action\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart213 \tamarb213 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth3829\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth3279\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth7372\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 app/routes/app.managed.tsx\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Archived products screen (3)\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 ManagedProducts, loader\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart213 \tamarb213 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth3829\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth3279\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth7372\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 app/routes/app.tsx\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Shell, nav, auth (3)\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 App, loader, ErrorBoundary\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart213 \tamarb213 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth3829\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth3279\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth7372\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 app/quicktag-copy.tsx\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Shared merchant copy (1)\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 WhatArchivingDoes\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart213 \tamarb213 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth3829\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth3279\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth7372\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 app/shopify.server.ts\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Shopify SDK setup, install hook\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 afterAuth \uc0\u8594  seedQuickTagConfig\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart213 \tamarb213 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth3829\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth3279\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth7372\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 extensions/quicktag-action/src/ActionExtension.tsx\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 The modal (5)\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Extension\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart213 \tamarb213 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth3829\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth3279\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth7372\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 extensions/quicktag-block/src/BlockExtension.tsx\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 The status card (4)\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Extension\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart213 \tamarb213 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth3829\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth3279\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth7372\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 extensions/*/src/quicktag-api.ts\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 HTTP transport to the app (4)\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 loadQuickTagState, submitQuickTag\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart213 \tamarb213 \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth3829\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth3279\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth7372\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 app/routes/webhooks.app.*.tsx\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Uninstall, scope changes (2)\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 action\cell \lastrow\row
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sa80\partightenfactor0
+\ls5\ilvl0
+\fs29\fsmilli14667 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 `quicktag-api.ts` is 
+\f0\b byte-identical in both extensions
+\f1\b0 . Shopify compiles each extension into its own bundle, so they cannot share code. Keep the copies in step.\
+\pard\pardeftab720\sa309\partightenfactor0
+
+\f0\b\fs37\fsmilli18667 \cf0 5. Data storage\
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart213 \tamarb213 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clcbpat3 \clwWidth5004\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx2880
+\clvertalt \clcbpat3 \clwWidth6482\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx5760
+\clvertalt \clcbpat3 \clwWidth2994\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\fs28 \cf0 Data\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Location\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Scope\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart213 \tamarb213 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth5004\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth6482\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth2994\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f1\b0 \cf0 Default tags\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Metafield `$app.config` on the app installation\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Shop\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart213 \tamarb213 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth5004\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth6482\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth2994\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Backup (savedTags + appliedTags)\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Metafield `$app.tag_backup` on the product\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Per archived product\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart213 \tamarb213 \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth5004\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx2880
+\clvertalt \clshdrawnil \clwWidth6482\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx5760
+\clvertalt \clshdrawnil \clwWidth2994\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Sessions\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Prisma (SQLite in dev)\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Per shop\cell \lastrow\row
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sa80\partightenfactor0
+\ls6\ilvl0
+\fs29\fsmilli14667 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Both metafields use the app-reserved `$app` namespace \'97 invisible to the merchant metafield UI.\
+\ls6\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Restore reads the 
+\f0\b product's own
+\f1\b0  backup, so changing shop defaults can never strip the wrong tags off a product archived earlier.\
+\pard\pardeftab720\sa309\partightenfactor0
+
+\f0\b\fs37\fsmilli18667 \cf0 6. Shopify APIs\
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart213 \tamarb213 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clcbpat3 \clwWidth4433\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx4320
+\clvertalt \clcbpat3 \clwWidth10440\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\fs28 \cf0 Item\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Value\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart213 \tamarb213 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth4433\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx4320
+\clvertalt \clshdrawnil \clwWidth10440\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f1\b0 \cf0 Admin GraphQL API\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 2026-07\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart213 \tamarb213 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth4433\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx4320
+\clvertalt \clshdrawnil \clwWidth10440\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 UI Extensions API\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 2026-07\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart213 \tamarb213 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth4433\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx4320
+\clvertalt \clshdrawnil \clwWidth10440\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Scope\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 write_products (only)\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart213 \tamarb213 \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth4433\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx4320
+\clvertalt \clshdrawnil \clwWidth10440\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Distribution\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 SingleMerchant \'97 custom/unlisted, not App Store\cell \lastrow\row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart213 \tamarb213 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clcbpat3 \clwWidth6510\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx4320
+\clvertalt \clcbpat3 \clwWidth8363\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f0\b \cf0 GraphQL operation\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Used for\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart213 \tamarb213 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth6510\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx4320
+\clvertalt \clshdrawnil \clwWidth8363\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f1\b0 \cf0 tagsAdd / tagsRemove\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 All tag changes\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart213 \tamarb213 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth6510\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx4320
+\clvertalt \clshdrawnil \clwWidth8363\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 metafieldsSet / metafieldsDelete\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Config and per-product backups\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart213 \tamarb213 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth6510\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx4320
+\clvertalt \clshdrawnil \clwWidth8363\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 metafieldDefinitionCreate\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 One-time setup so backups are queryable\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \tamart213 \tamarb213 \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth6510\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx4320
+\clvertalt \clshdrawnil \clwWidth8363\clftsWidth3 \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadt133 \clpadl186 \clpadb133 \clpadr186 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 product / products\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Reading tags and titles\cell \lastrow\row
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sa80\partightenfactor0
+\ls7\ilvl0
+\fs29\fsmilli14667 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Extension targets: `admin.product-details.action.render` and `admin.product-details.block.render`.\
+\ls7\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Versions: @shopify/shopify-app-react-router 1.1.0 \'b7 app-bridge-react 4.2.4 \'b7 ui-extensions 2026.7.0 \'b7 React Router 7.12.0 \'b7 React 18.3.1 \'b7 Prisma 6.16.3.\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sa80\partightenfactor0
+\ls7\ilvl0
+\f0\b \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Known platform limit:
+\f1\b0  Shopify's own Tags card on the product page does not repaint after a write until the page reloads. Confirmed by measurement; unreachable from an extension.\
+\pard\pardeftab720\sa309\partightenfactor0
+
+\f0\b\fs37\fsmilli18667 \cf0 7. Install on a new store from local\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sa80\partightenfactor0
+\ls8\ilvl0
+\fs29\fsmilli14667 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 1.
+\f1\b0  `npm install`\
+\ls8\ilvl0
+\f0\b \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 2.
+\f1\b0  `npm run setup` \'97 creates the local DB. `prisma/dev.sqlite` is gitignored, so a fresh clone has none.\
+\ls8\ilvl0
+\f0\b \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 3.
+\f1\b0  `npm run dev` \'97 CLI prompts for org, app, then store domain.\
+\ls8\ilvl0
+\f0\b \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 4.
+\f1\b0  Press 
+\f0\b p
+\f1\b0 , then 
+\f0\b Install app
+\f1\b0  in the browser.\
+\ls8\ilvl0
+\f0\b \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 5.
+\f1\b0  Action extension appears under More actions immediately. Block extension must be pinned by hand.\
+\ls8\ilvl0
+\f0\b \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 No code changes are needed to add a store.
+\f1\b0  Only when pointing at a different Shopify app: run `shopify app config link` \'97 never hand-edit `shopify.app.toml`.\
+\ls8\ilvl0
+\f0\b \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 The app only works while `npm run dev` runs.
+\f1\b0  A permanent install needs real hosting.\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sa80\partightenfactor0
+\ls8\ilvl0\cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Node 20.19+ required \'97 22.0 to 22.11 will not work.\
+}

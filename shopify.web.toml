@@ -1,0 +1,14 @@
+# Declares the one "web" process of this app: the local React Router server.
+#
+# WHERE THIS RUNS: `shopify app dev` reads this file, runs these commands on
+# YOUR machine, and opens a tunnel so Shopify can reach the resulting server.
+# The embedded Settings screen, the loaders/actions, and the webhook handlers
+# all live behind that tunnel. The block extension does NOT — Shopify hosts
+# and runs that itself.
+name = "QuickTag"
+roles = ["frontend", "backend"]
+webhooks_path = "/webhooks/app/uninstalled"
+
+[commands]
+predev = "npm exec prisma generate"
+dev = "npm exec prisma migrate deploy && npm exec react-router dev"

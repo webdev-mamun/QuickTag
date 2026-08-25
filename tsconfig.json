@@ -1,0 +1,30 @@
+{
+  "include": ["env.d.ts", "**/*.ts", "**/*.tsx", ".react-router/types/**/*"],
+  // Extensions are compiled by the Shopify CLI against their own tsconfig
+  // (preact JSX runtime, different globals), so they must not be pulled into
+  // the app's typecheck.
+  "exclude": ["node_modules", "build", "extensions"],
+  "compilerOptions": {
+    "lib": ["DOM", "DOM.Iterable", "ES2022"],
+    "strict": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "allowSyntheticDefaultImports": true,
+    "removeComments": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "jsx": "react-jsx",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "target": "ES2022",
+    // No "baseUrl". It came with the template, but nothing here uses it: there
+    // are no "paths" aliases, no "~/" imports, and no matching alias in
+    // vite.config.ts — every internal import is relative. TypeScript 7 removes
+    // the option outright, so deleting the dead setting is the migration, and
+    // it beats silencing the warning with "ignoreDeprecations".
+    "types": ["@react-router/node", "vite/client", "@shopify/polaris-types"],
+    "rootDirs": [".", "./.react-router/types"]
+  }
+}

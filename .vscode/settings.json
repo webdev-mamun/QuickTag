@@ -1,0 +1,28 @@
+{
+  // Editor-only settings. Nothing here affects a build — `npm run typecheck`,
+  // the per-extension tsc runs, and `npm run lint` are all clean without it.
+  //
+  // The problem it solves: `shopify app dev` writes a minified bundle to
+  // extensions/<handle>/dist/. No tsconfig owns that directory (each extension's
+  // tsconfig deliberately includes only "src" and "shopify.d.ts"), so the editor
+  // puts the bundle in an inferred project and reports errors from Preact's
+  // mangled internals — a Problems tab full of entries about generated code that
+  // nobody wrote and nobody can fix.
+  //
+  // The directory is already in .gitignore. Hiding it here keeps it out of the
+  // language service, the explorer, and search.
+  "files.exclude": {
+    "**/extensions/*/dist": true
+  },
+  "search.exclude": {
+    "**/extensions/*/dist": true
+  },
+  "files.watcherExclude": {
+    "**/extensions/*/dist/**": true
+  },
+
+  // Belt and braces: even if the bundle is opened explicitly, don't typecheck
+  // plain JS that no tsconfig claims. The extensions set checkJs themselves,
+  // scoped to their own src.
+  "js/ts.implicitProjectConfig.checkJs": false
+}

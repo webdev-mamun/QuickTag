@@ -1,0 +1,35 @@
+# QuickTag action extension — configuration.
+#
+# WHERE THIS RUNS: nowhere by itself. The CLI uploads this manifest plus the
+# compiled JS bundle to Shopify. Shopify then serves and executes the bundle on
+# ITS OWN infrastructure — a sandboxed worker inside the admin page, not your
+# local server. Your Node server is not in the request path when the merchant
+# presses the button.
+#
+# WHY AN ACTION AS WELL AS THE BLOCK: it needs no setup. This appears in More
+# actions the moment the app is installed, where a block has to be pinned to the
+# product page by the merchant first. An action is also the only admin target
+# that can raise an `s-modal`, so anything needing a confirm-then-report dialog
+# has to live here.
+#
+# WHAT THIS COMMENT USED TO CLAIM, and don't put back: that `shopify.close()`
+# refreshes the product page, and that this is how the admin's own Tags card
+# picks up a write. It isn't. The card holds its page-load data until a full
+# reload no matter what writes, from where — measured on a real store, with the
+# probe results and the four attempted workarounds written up in
+# src/ActionExtension.tsx and in the README. The modal tells the merchant to
+# refresh because that is the only honest thing it can do.
+api_version = "2026-07"
+
+[[extensions]]
+# Merchant-facing name lives in locales/en.default.json. This is the label
+# that appears in the product page's "More actions" menu.
+name = "t:name"
+handle = "quicktag-action"
+uid = "9bdc0c0a-32b1-5972-ada5-ef3f6430b482ebd30214"
+type = "ui_extension"
+
+# Only 1 target can be specified for each Admin action extension.
+[[extensions.targeting]]
+module = "./src/ActionExtension.tsx"
+target = "admin.product-details.action.render"

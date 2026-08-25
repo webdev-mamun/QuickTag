@@ -1,0 +1,45 @@
+{
+  // Source plus the CLI-generated shopify.d.ts, and nothing else. Two separate
+  // reasons, both learned the hard way:
+  //
+  //   - No "include" at all: `allowJs` + `checkJs` drag the CLI's minified
+  //     bundle in dist/ into the program, which fails with hundreds of errors
+  //     out of Preact's mangled internals.
+  //   - "src" alone: shopify.d.ts is then owned by no tsconfig, so editors put
+  //     it in an inferred project with stock settings — no jsxImportSource, no
+  //     skipLibCheck — and it reports errors from every component type it
+  //     pulls in. tsc on the command line never sees this; the Problems tab does.
+  "include": ["src", "shopify.d.ts"],
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact",
+    "target": "ES2020",
+    "checkJs": true,
+    "allowJs": true,
+    // Must be Bundler, not "node". @shopify/ui-extensions ships its subpaths
+    // (e.g. /preact, /admin.product-details.block.render) through the exports
+    // map only — there is no physical ./preact directory to resolve. "node" is
+    // node10, which predates exports and reports TS2882 on the side-effect
+    // import at the top of src. Bundler also matches how the Shopify CLI really
+    // builds this, and matches the app's own tsconfig.
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    // No ambient @types at all. Without this, every package in the app's
+    // node_modules/@types lands in this extension's global scope — node, react,
+    // react-dom among them — and none of it is true here:
+    //   - @types/node offers process, Buffer, require, __dirname. The sandbox
+    //     has none of them, so that code typechecks and then fails at runtime.
+    //     It also makes setInterval return NodeJS.Timeout instead of a number,
+    //     which this file's polling effect actually uses.
+    //   - @types/react registers a global React JSX namespace that competes
+    //     with Preact's, which this extension selects via jsxImportSource.
+    // Nothing here needs them: DOM and ES2020 globals come from the default lib
+    // for this target, and the `shopify` global is declared in src/shopify.d.ts.
+    // TypeScript 6 makes [] the default; setting it now keeps that upgrade from
+    // silently changing behaviour.
+    "types": [],
+    "esModuleInterop": true,
+    "noEmit": true,
+    "skipLibCheck": true
+  }
+}
