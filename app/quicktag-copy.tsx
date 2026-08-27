@@ -52,12 +52,16 @@
  *   per-product history the merchant cannot see — and the cost of it is a real
  *   tag being stripped from products that had it.
  *
- *   So it is stated twice, in the two places a merchant can still act on it:
- *   here, and on the settings card next to the field where the tags are chosen.
- *   The settings copy leads with the consequence because that is what a merchant
- *   mid-decision can use; this one leads with the rule because the panel's job
- *   is explaining the app. Don't collapse them into one sentence used in both
- *   places — they are answering different questions.
+ *   USED TO BE STATED TWICE ON THE SAME SCREEN, WORDED DIFFERENTLY, WHICH READ
+ *   AS A DUPLICATE RATHER THAN AS TWO ANSWERS. The settings card and this
+ *   paragraph both carried the warning, on the theory that they answer
+ *   different questions — consequence-first for a merchant mid-decision,
+ *   rule-first for a merchant reading the panel. In practice a merchant
+ *   scrolling the settings page just sees the same warning twice. Settings now
+ *   shows it ONCE, as a warning banner next to the field it constrains
+ *   (`hideReservedTagsNote` suppresses this paragraph there); Archived products
+ *   has no such banner, so this paragraph is still its only mention of the
+ *   rule.
  *
  *   "drops out of those" — deliberately scoped, and the scope is the two things
  *   named in the same sentence. Automated collections and storefront filters key
@@ -155,8 +159,16 @@
  * need one will need it here.
  */
 export function WhatArchivingDoes({
+  hideReservedTagsNote = false,
   children,
 }: {
+  /**
+   * Settings passes `true`. Its own tag field already carries this warning as
+   * a banner (see app._index.tsx), and repeating it here read as the same
+   * warning twice on one screen. Archived products has no such banner, so it
+   * leaves this at its default and keeps the paragraph as its only mention.
+   */
+  hideReservedTagsNote?: boolean;
   children?: React.ReactNode;
 }) {
   return (
@@ -173,10 +185,12 @@ export function WhatArchivingDoes({
         Tags drive automated collections and storefront filters, so the product
         drops out of those. Unarchiving puts your original tags back.
       </s-paragraph>
-      <s-paragraph>
-        Archive tags belong to QuickTag: unarchiving strips them even from
-        products that already had one, so don&apos;t reuse them elsewhere.
-      </s-paragraph>
+      {hideReservedTagsNote ? null : (
+        <s-paragraph>
+          Archive tags belong to QuickTag: unarchiving strips them even from
+          products that already had one, so don&apos;t reuse them elsewhere.
+        </s-paragraph>
+      )}
       {children}
     </s-section>
   );

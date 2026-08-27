@@ -446,15 +446,27 @@ export default function Settings() {
             it. Nothing else on any screen can warn them: by the time it
             matters, the tag is already gone and there is no record it existed.
 
+            NOW A WARNING BANNER, NOT SUBDUED TEXT. It used to sit here as quiet
+            grey text — easy to skip past, for the one warning in the app whose
+            cost (a real tag silently stripped) can't be undone once missed. The
+            empty-tag-list warning a few lines up already gets a banner; this
+            one is at least as consequential and gets the same treatment. It
+            also used to repeat, worded differently, in the aside below — see
+            WhatArchivingDoes in quicktag-copy.tsx for why that copy is now
+            suppressed on this page (`hideReservedTagsNote`) rather than saying
+            the same thing twice on one screen.
+
             IT NAMES THE CONSEQUENCE BEFORE THE RULE. "These tags are reserved
             by QuickTag" is the accurate summary and means nothing to a merchant
             who has not read the source. What a tag being reserved COSTS them is
             the part they can act on while they are still choosing it.
           */}
-          <s-paragraph color="subdued">
-            Don&apos;t reuse archive tags elsewhere — unarchiving removes them,
-            even from products that already had them.
-          </s-paragraph>
+          <s-banner tone="warning">
+            <s-paragraph>
+              Don&apos;t reuse an archive tag on other products — unarchiving
+              removes it from all of them, even ones that already had it.
+            </s-paragraph>
+          </s-banner>
 
           {saveError ? (
             <s-banner tone="critical" heading="Couldn't save your archive tags">
@@ -465,16 +477,22 @@ export default function Settings() {
       </s-section>
 
       {/*
-        THE ASIDE CARRIES NO PAGE-SPECIFIC NOTE, and the card carries no prose
-        at all now. Two facts were dropped on purpose and are stated nowhere on
-        this page: that these tags apply only to products archived from here on,
-        and that a product archived earlier remembers the tags it was archived
-        with. Both are still TRUE — restore reads each product's own backup and
-        never this list (see restoreProduct in quicktag-archive.server.ts) — so
-        nothing here is a promise the server can break. They are simply not
-        answered until a merchant asks, which is the trade this card is making.
+        `hideReservedTagsNote` drops the aside's own reserved-tags paragraph:
+        the warning banner above already carries it, next to the field it
+        constrains, and repeating it again down here read as the same warning
+        twice on one screen. See WhatArchivingDoes in quicktag-copy.tsx.
+
+        Otherwise the aside carries no page-specific note, and the card carries
+        no other prose. Two facts were dropped on purpose and are stated
+        nowhere on this page: that these tags apply only to products archived
+        from here on, and that a product archived earlier remembers the tags it
+        was archived with. Both are still TRUE — restore reads each product's
+        own backup and never this list (see restoreProduct in
+        quicktag-archive.server.ts) — so nothing here is a promise the server
+        can break. They are simply not answered until a merchant asks, which is
+        the trade this card is making.
       */}
-      <WhatArchivingDoes />
+      <WhatArchivingDoes hideReservedTagsNote />
     </s-page>
   );
 }
