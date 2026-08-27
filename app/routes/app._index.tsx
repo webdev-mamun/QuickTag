@@ -452,8 +452,8 @@ export default function Settings() {
             the part they can act on while they are still choosing it.
           */}
           <s-paragraph color="subdued">
-            Don&apos;t reuse an archive tag for anything else — unarchiving
-            removes it, even from products that already had it.
+            Don&apos;t reuse archive tags elsewhere — unarchiving removes them,
+            even from products that already had them.
           </s-paragraph>
 
           {saveError ? (

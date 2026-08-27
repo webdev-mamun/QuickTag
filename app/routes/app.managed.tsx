@@ -194,10 +194,10 @@ export default function ManagedProducts() {
             If the locale names ever change, this copy changes with them.
           */}
           <s-paragraph>
-            To archive a product&apos;s tags, open it in the admin and choose{" "}
+            To archive a product&apos;s tags, open it and choose{" "}
             <s-text type="strong">Archive or unarchive tags</s-text> from the
-            More actions menu. QuickTag&apos;s card can be pinned to the product
-            page instead — it&apos;s listed under the same name.
+            More actions menu — or pin QuickTag&apos;s card to the product page
+            under the same name.
           </s-paragraph>
         </s-section>
 
@@ -229,7 +229,7 @@ export default function ManagedProducts() {
         }
       >
         <s-paragraph>
-          Select a product to open it in the admin. Unarchiving one puts its
+          Select a product to open it in the admin. Unarchiving puts its
           saved tags back and removes it from this list.
         </s-paragraph>
 
@@ -241,17 +241,18 @@ export default function ManagedProducts() {
           not repeated here: that explains QuickTag's storage, not their options.
         */}
         {/*
-          IT DOES NOT CLAIM AN ORDER IT CANNOT PROMISE. This read "Sorted in
-          Shopify's default product order", which is not what happens: the list
-          walks `metafieldDefinition.metafields` (see quicktag-managed.server.ts)
-          and that connection takes no sortKey, so the order is Shopify's own for
-          metafields and has nothing to do with product order. A merchant
-          cross-checking these rows against their product list would find they
-          don't line up.
+          NO CLAIM ABOUT ORDER AT ALL, which is safer than describing it. This
+          used to read "Sorted in the order Shopify returns them. Sorting isn't
+          available on this list." — but the first sentence describes internals
+          (the list walks `metafieldDefinition.metafields`, see
+          quicktag-managed.server.ts, with no sortKey) that don't help a merchant
+          and invited exactly the wrong reading tried before that: a merchant
+          cross-checking these rows against their product list expecting them to
+          line up. Just saying it can't be sorted promises nothing to be wrong
+          about.
         */}
         <s-paragraph color="subdued">
-          Sorted in the order Shopify returns them. Sorting isn&apos;t available
-          on this list.
+          This list can&apos;t be sorted.
         </s-paragraph>
 
         {/*

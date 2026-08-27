@@ -17,7 +17,7 @@
  *
  * WHAT THE COPY CLAIMS, and why each claim is safe to make:
  *
- *   "never touches a product's status" — verified against
+ *   "never changes a product's status" — verified against
  *   quicktag-archive.server.ts. The archive path runs exactly four mutations:
  *   metafieldsSet and metafieldsDelete for the backup, tagsAdd and tagsRemove
  *   for the tags. Nothing touches product status or publication. If that ever
@@ -166,8 +166,8 @@ export function WhatArchivingDoes({
         tags change.
       </s-paragraph>
       <s-paragraph>
-        QuickTag never touches a product&apos;s status. Active, Draft and
-        Archived in Shopify are left exactly as they are.
+        QuickTag never changes a product&apos;s status — Active, Draft, or
+        Archived in Shopify stay exactly as they are.
       </s-paragraph>
       <s-paragraph>
         Tags drive automated collections and storefront filters, so the product
