@@ -155,7 +155,6 @@ export default function ManagedProducts() {
 
   const {
     products,
-    total,
     hasNextPage,
     hasPreviousPage,
     startCursor,
@@ -218,50 +217,39 @@ export default function ManagedProducts() {
   return (
     <s-page heading="Archived products">
       {/*
-        The count only. The page heading above already says these are archived,
-        and repeating it here gave the section the same title as the page.
+        NO HEADING AND NO SORT NOTE. This section used to open with a
+        "N products" heading and, below the intro paragraph, a note saying the
+        list can't be sorted. Both were dropped as noise: the page heading
+        above already says these are archived, so a count-only section heading
+        repeated it; the sort note only exists to preempt a question a merchant
+        looking at a short, single-page list of their own archived products
+        isn't likely to ask. If the list grows long enough that sorting becomes
+        a real question, that's the point to answer it — not before.
       */}
-      <s-section
-        heading={
-          total === null
-            ? "Products"
-            : `${total} product${total === 1 ? "" : "s"}`
-        }
-      >
+      <s-section>
         <s-paragraph>
-          Select a product to open it in the admin. Unarchiving puts its
+          Click a product to open it in the admin. Unarchiving puts its
           saved tags back and removes it from this list.
         </s-paragraph>
+      </s-section>
 
-        {/*
-          The sort limitation, moved out of the aside to sit directly above the
-          table it describes. A merchant hunting for a sort control is looking
-          at the column headers, not at a side panel. The reason it can't be
-          sorted — the archive date lives inside the metafield — is deliberately
-          not repeated here: that explains QuickTag's storage, not their options.
-        */}
-        {/*
-          NO CLAIM ABOUT ORDER AT ALL, which is safer than describing it. This
-          used to read "Sorted in the order Shopify returns them. Sorting isn't
-          available on this list." — but the first sentence describes internals
-          (the list walks `metafieldDefinition.metafields`, see
-          quicktag-managed.server.ts, with no sortKey) that don't help a merchant
-          and invited exactly the wrong reading tried before that: a merchant
-          cross-checking these rows against their product list expecting them to
-          line up. Just saying it can't be sorted promises nothing to be wrong
-          about.
-        */}
-        <s-paragraph color="subdued">
-          This list can&apos;t be sorted.
-        </s-paragraph>
+      {/*
+        A SEPARATE SECTION, not the same one as the paragraph above. `s-page`
+        spaces sibling sections apart on its own, which is what makes the
+        intro paragraph and the table read as two distinct blocks instead of
+        needing a stack to force space between them inside one section.
 
-        {/*
-          `paginate` is conditional, not always-on. Set unconditionally it
-          renders a pair of dead arrows under a table that fits on one page —
-          controls that can't do anything, which read as broken rather than as
-          disabled. Shopify tells us both flags, so the row of buttons only
-          appears once there is somewhere to go.
-        */}
+        NO HEADING, NO BORDER BOX. Both were tried — a "Products (N)" heading
+        and an s-box border wrapper — and dropped again: the table on its own
+        read better than the table dressed up with either.
+
+        `padding="none"` ON THE SECTION ITSELF. `s-section` pads its content by
+        default ('base'), which inset the table from all four edges of the
+        card. `padding="none"` is the documented way to let a child span
+        edge-to-edge — Shopify's own docs name a table as exactly the case
+        it's for — so the table now fills the section flush on every side.
+      */}
+      <s-section padding="none">
         <s-table
           variant="auto"
           {...(hasNextPage || hasPreviousPage ? { paginate: true } : {})}
@@ -271,47 +259,90 @@ export default function ManagedProducts() {
           onNextPage={goToNextPage}
           onPreviousPage={goToPreviousPage}
         >
+          {/*
+            `paginate` is conditional, not always-on. Set unconditionally it
+            renders a pair of dead arrows under a table that fits on one page —
+            controls that can't do anything, which read as broken rather than
+            as disabled. Shopify tells us both flags, so the row of buttons
+            only appears once there is somewhere to go.
+
+            LIST-VIEW SLOTS, for narrow admins where `variant="auto"` falls
+            back to a stacked list instead of columns. Product stays `primary`
+            (the one thing every row is identified by). Archived is
+            `secondary` so the date reads as a subtitle under the product
+            name, which is closer to how a merchant thinks of it — "archived
+            on this date" — than a labeled row of its own. Applied tags is
+            `inline` so its badges sit on their own line without a repeated
+            "Applied tags:" label in front of every badge. Saved tags stays
+            `labeled`: a bare number needs the label to mean anything.
+          */}
+          {/*
+            `s-table-header` takes no padding prop either — same s-box
+            workaround as the body cells, so the header row isn't flush
+            against the section's edge the way padding="none" on the section
+            now leaves everything.
+          */}
           <s-table-header-row>
-            <s-table-header listSlot="primary">Product</s-table-header>
-            <s-table-header listSlot="labeled">Applied tags</s-table-header>
-            <s-table-header listSlot="labeled" format="numeric">
-              Saved tags
+            <s-table-header listSlot="primary">
+              <s-box paddingBlock="small-300">Product</s-box>
             </s-table-header>
-            <s-table-header listSlot="labeled">Archived</s-table-header>
+            <s-table-header listSlot="inline">
+              <s-box paddingBlock="small-300">Applied tags</s-box>
+            </s-table-header>
+            <s-table-header listSlot="labeled" format="numeric">
+              <s-box paddingBlock="small-300">Saved tags</s-box>
+            </s-table-header>
+            <s-table-header listSlot="secondary">
+              <s-box paddingBlock="small-300">Archived</s-box>
+            </s-table-header>
           </s-table-header-row>
 
           <s-table-body>
             {products.map((product, index) => {
-              // clickDelegate takes the ID of a real interactive element inside
-              // the row — it delegates the row's click to that element rather
-              // than inventing a click target. Keyboard and screen-reader users
-              // get the link itself, which is why the link has to exist.
+              // clickDelegate takes the ID of a real interactive element
+              // inside the row — it delegates the row's click to that
+              // element rather than inventing a click target. Keyboard and
+              // screen-reader users get the link itself, which is why the
+              // link has to exist.
               const linkId = `quicktag-managed-link-${index}`;
 
+              // `s-table-cell` and `s-table-row` take no padding or density
+              // prop of their own — the table's row height isn't documented as
+              // adjustable at all. An `s-box` with `paddingBlock` around each
+              // cell's content is the workaround: it grows the cell's content,
+              // and the row grows to fit it.
               return (
                 <s-table-row key={product.productId} clickDelegate={linkId}>
                   <s-table-cell>
-                    <s-link
-                      id={linkId}
-                      href={`shopify:admin/products/${product.adminProductId}`}
-                    >
-                      {product.title}
-                    </s-link>
+                    <s-box paddingBlock="small-400">
+                      <s-link
+                        id={linkId}
+                        href={`shopify:admin/products/${product.adminProductId}`}
+                      >
+                        {product.title}
+                      </s-link>
+                    </s-box>
                   </s-table-cell>
 
                   <s-table-cell>
-                    <s-stack direction="inline" gap="small-500">
-                      {product.appliedTags.map((tag) => (
-                        <s-badge key={tag} tone="warning">
-                          {tag}
-                        </s-badge>
-                      ))}
-                    </s-stack>
+                    <s-box paddingBlock="small-400">
+                      <s-stack direction="inline" gap="small-500">
+                        {product.appliedTags.map((tag) => (
+                          <s-badge key={tag} tone="warning">
+                            {tag}
+                          </s-badge>
+                        ))}
+                      </s-stack>
+                    </s-box>
                   </s-table-cell>
 
-                  <s-table-cell>{product.savedTags.length}</s-table-cell>
+                  <s-table-cell>
+                    <s-box paddingBlock="small-400">{product.savedTags.length}</s-box>
+                  </s-table-cell>
 
-                  <s-table-cell>{product.archivedLabel}</s-table-cell>
+                  <s-table-cell>
+                    <s-box paddingBlock="small-400">{product.archivedLabel}</s-box>
+                  </s-table-cell>
                 </s-table-row>
               );
             })}
@@ -325,10 +356,10 @@ export default function ManagedProducts() {
         screen for why that panel went: it named the storage instead of the
         guarantee, and the storage is not something a merchant can act on.
 
-        Both facts it carried survive elsewhere, closer to where they matter —
-        that a product leaves this list on restore is now in the intro paragraph
-        above the table, and the sort limitation sits under the table itself,
-        where someone actually looking for a sort control will find it.
+        The one fact it carried that survives elsewhere: that a product leaves
+        this list on restore is now in the intro paragraph above the table. The
+        sort limitation this used to mention alongside it was dropped outright
+        (not moved) — see the note above the table's section for why.
       */}
       <WhatArchivingDoes />
     </s-page>

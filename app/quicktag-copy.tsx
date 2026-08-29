@@ -172,10 +172,10 @@ export function WhatArchivingDoes({
   children?: React.ReactNode;
 }) {
   return (
-    <s-section slot="aside" heading="What archiving does">
+    <s-section slot="aside" heading="How QuickTag works">
       <s-paragraph>
-        Archiving in QuickTag swaps a product&apos;s tags for yours. Only the
-        tags change.
+        Archiving in QuickTag replaces a product&apos;s tags with your archive
+        tags — nothing else changes.
       </s-paragraph>
       <s-paragraph>
         QuickTag never changes a product&apos;s status — Active, Draft, or

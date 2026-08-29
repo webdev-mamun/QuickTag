@@ -1,73 +1,163 @@
+/*
+ * QuickTag — landing page styles.
+ *
+ * SCOPED, NOT GLOBAL. A CSS module: every class below is rewritten to a unique
+ * name at build time, so nothing here can leak into the embedded admin screens.
+ * That matters because those screens render Polaris web components, whose
+ * styling Shopify owns outright and refuses to let an app override.
+ *
+ * THE TOKENS EXIST SO DARK MODE IS ONE BLOCK, NOT TWELVE. Every colour is a
+ * custom property defined once on `.index`, and the `prefers-color-scheme`
+ * block at the bottom redefines those properties and nothing else. Adding a
+ * colour anywhere else in this file, rather than as a token, is how the two
+ * themes drift apart.
+ *
+ * THERE ARE NO FORM STYLES HERE ANY MORE. The template's shop-domain form was
+ * removed from route.tsx — see that file's header for why — and its rules went
+ * with it, along with the tokens only it used (--qt-border-strong,
+ * --qt-accent, --qt-accent-text, --qt-focus). Dead CSS outlives the markup it
+ * styled unless it is deleted in the same change.
+ *
+ * --qt-surface went out with the form and came back for the feature cards. It
+ * is the only token here with a second caller, which is the whole reason it is
+ * a token rather than a hex code in one rule.
+ */
+
 .index {
-  align-items: center;
+  /* Light palette. The dark one is the media query at the foot of the file. */
+  --qt-bg: #f7f7f5;
+  --qt-surface: #ffffff;
+  --qt-border: #e1e1dd;
+  --qt-text: #1a1a1a;
+  --qt-text-subdued: #5c5c57;
+
+  box-sizing: border-box;
   display: flex;
+  align-items: center;
   justify-content: center;
-  height: 100%;
+  min-height: 100%;
   width: 100%;
-  text-align: center;
-  padding: 1rem;
+  padding: 3rem 1.5rem;
+
+  background: var(--qt-bg);
+  color: var(--qt-text);
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
-.heading,
-.text {
-  padding: 0;
-  margin: 0;
-}
-
-.text {
-  font-size: 1.2rem;
-  padding-bottom: 2rem;
+.index *,
+.index *::before,
+.index *::after {
+  box-sizing: inherit;
 }
 
 .content {
-  display: grid;
-  gap: 2rem;
-}
-
-.form {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+  width: 100%;
+  max-width: 46rem;
   margin: 0 auto;
-  gap: 1rem;
+  text-align: center;
 }
 
-.label {
-  display: grid;
-  gap: 0.2rem;
-  max-width: 20rem;
-  text-align: left;
-  font-size: 1rem;
+.eyebrow {
+  margin: 0 0 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--qt-text-subdued);
 }
 
-.input {
-  padding: 0.4rem;
+/*
+ * `clamp` rather than a media query: the headline is the one element whose
+ * size has to track the viewport continuously, because it is two lines on a
+ * laptop and four on a phone and every awkward size is in between.
+ *
+ * SIZED AS A PAGE TITLE, NOT A MARKETING HERO. It was 28-44px, which is hero
+ * scale and read as oversized in the admin frame this page is usually seen
+ * through. 24-32px sits closer to the admin's own page headings.
+ */
+.heading {
+  margin: 0 0 1rem;
+  font-size: clamp(1.5rem, 1.15rem + 1.4vw, 2rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  color: var(--qt-text);
 }
 
-.button {
-  padding: 0.4rem;
+.text {
+  margin: 0 auto;
+  max-width: 34rem;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--qt-text-subdued);
 }
 
+/* ------------------------------------------------------------------ *
+ * Feature list
+ * ------------------------------------------------------------------ */
+
+/*
+ * `auto-fit` + `minmax` rather than a breakpoint: three columns collapse to
+ * two and then to one on their own, at whatever width the text actually stops
+ * fitting, instead of at a width guessed in advance.
+ */
 .list {
   list-style: none;
+  margin: 3.5rem 0 0;
   padding: 0;
-  padding-top: 3rem;
-  margin: 0;
-  display: flex;
-  gap: 2rem;
-}
-
-.list > li {
-  max-width: 20rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1.75rem;
   text-align: left;
 }
 
-@media only screen and (max-width: 50rem) {
-  .list {
-    display: block;
-  }
+/*
+ * CARDS, NOT A TOP RULE. Each item was separated by a single border-top on the
+ * theory that three short paragraphs didn't warrant boxes. Bordered cards read
+ * better against the page's tinted background: --qt-surface lifts them off it,
+ * which a bare rule can't do.
+ *
+ * `height: 100%` is what keeps them the same height. Grid stretches items by
+ * default, but only the grid ITEM — the card is that item here, so without this
+ * a short card's border would stop above a taller neighbour's and the row would
+ * look ragged.
+ */
+.listItem {
+  height: 100%;
+  padding: 1.25rem;
+  background: var(--qt-surface);
+  border: 1px solid var(--qt-border);
+  border-radius: 0.75rem;
+}
 
-  .list > li {
-    padding-bottom: 1rem;
+.listHeading {
+  margin: 0 0 0.375rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--qt-text);
+}
+
+.listText {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--qt-text-subdued);
+}
+
+/* ------------------------------------------------------------------ *
+ * Dark mode — tokens only. Nothing below redefines layout.
+ * ------------------------------------------------------------------ */
+
+@media (prefers-color-scheme: dark) {
+  .index {
+    --qt-bg: #1a1a19;
+    --qt-surface: #232322;
+    --qt-border: #353533;
+    --qt-text: #f2f2f0;
+    --qt-text-subdued: #a8a8a2;
   }
 }
